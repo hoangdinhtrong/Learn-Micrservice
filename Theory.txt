@@ -16,3 +16,5 @@
 
 => Các Service được viết riêng biệt và có cơ sở dữ liệu riêng, và có phần nào đó phụ thuộc vào services khác
 ----------------------------------------------------------------------------------------------------------
+- Nhược điểm
++ Khóa để triển khai cho toàn bộ các chức năng

@@ -1,0 +1,18 @@
+- What are "Microservices"
++ small 
++ chịu trách nhiệm làm một việc
++ được liên kết về mặt tổ chức
++ Là một phần của tổng thể phân tán
++ Không quá phụ thuộc
++ Tập hợp những thứ thay đổi cùng lý do và tách những thứ thay đổi vì các lý do khác nhau
+
+-------------------------------------------------------------------------------------------------
+- Ưu điểm:
++ dễ thay đổi và triển khai
++ có thể được xây dựng băng nhiều công nghệ khác nhau
++ tăng sở hữu tổ chức và liên kết
++ mở rộng được
+
+
+=> Các Service được viết riêng biệt và có cơ sở dữ liệu riêng, và có phần nào đó phụ thuộc vào services khác
+----------------------------------------------------------------------------------------------------------

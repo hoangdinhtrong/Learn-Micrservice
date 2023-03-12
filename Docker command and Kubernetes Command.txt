@@ -1,0 +1,51 @@
+- Các câu lệnh docker:
++ docker --version
++ docker build -t <your docker hub id>/<name of service> .
+exam: docker build becomerichman/flatformservice .
++ docker run -p 8080:80 -d <docker hub id>/<name service>
+exam: docker run -p 8080:80 becomerichman/flatformservice (create a container)
++ docker ps (check which container is running)
++ docker stop <container id>
++ docker start <container id> (restart container)
++ docker push <docker hub id>/<name service>
+exam: docker push becomerichman/flatformservice
+
+
+
+
+===================================================================================================
+if build docker file with visual stadio, you cannot use push command above, so we need command below:
+PUSH
+
+docker login
+
+docker tag name_image[:tag] name_user_docker/name_image[:tag]
+
+docker push name_user_docker/name_image[:tag]
+
+DELETE
+
+docker rmi name_user_docker/name_image[:tag]
+
+or
+
+docker rmi -f image_id
+
+========================================================================================================
+* KUBERNETES
+-  Node
++ kubectl version - check version
+
++ kubectl apply -f platforms-depl.yaml
+
++ kubectl get deployments
+
++ kubectl get pods
+
++ kubectl get deployments
+
++ kubectl delete deployments platforms-depl
+
+---
+- NodePort
++ kubectl get services

@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: platforms-depl
+  name: commands-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: flatformservice
+      app: commandsservice
   template:
     metadata:
       labels:
-        app: flatformservice
+        app: commandsservice
     spec:
       containers:
-        - name: flatformservice
-          image: becomerichman/flatformservice:latest
+        - name: commandsservice
+          image: becomerichman/commandsservice:latest
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: platforms-clusterip-srv
+  name: commands-clusterip-srv
 spec:
   type: ClusterIP
   selector:
-    app: flatformservice
+    app: commandsservice
   ports:
-  - name: flatformservice
+  - name: commandsservice
     protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 80 

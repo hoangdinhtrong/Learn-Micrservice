@@ -2,6 +2,7 @@
 using FlatformService.Data;
 using FlatformService.Dtos;
 using FlatformService.Models;
+using FlatformService.SyncDataServices.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlatformService.Controllers
@@ -12,11 +13,15 @@ namespace FlatformService.Controllers
     {
         private readonly IPlatformRepo _platformRepo;
         private readonly IMapper _mapper;
+        private readonly ICommandDataClient _commandDataClient;
 
-        public PlatformsController(IPlatformRepo platformRepo, IMapper mapper)
+        public PlatformsController(IPlatformRepo platformRepo, 
+            IMapper mapper,
+            ICommandDataClient commandDataClient)
         {
             _platformRepo = platformRepo;
             _mapper = mapper;
+            _commandDataClient = commandDataClient;
         }
 
         [HttpGet]
@@ -41,14 +46,24 @@ namespace FlatformService.Controllers
 
         [HttpPost]
         [Route("CreatePlatform")]
-        public IActionResult CreatePlatform([FromBody]PlatformCreateDto platformCreateDto)
+        public async Task<IActionResult> CreatePlatform([FromBody]PlatformCreateDto platformCreateDto)
         {
             var platformModel = _mapper.Map<Platform>(platformCreateDto);
 
             _platformRepo.CreatePlatform(platformModel);
             _platformRepo.SaveChanges();
 
-            return Ok(_mapper.Map<PlatformReadDto>(platformModel));
+            var platformReadDto = _mapper.Map<PlatformReadDto>(platformModel);
+
+            try
+            {
+                await _commandDataClient.SendPlatformToCommand(platformReadDto);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"--> Could not send synchronously: {ex.Message}");
+            }
+            return Ok(platformReadDto);
         }
     }
 }

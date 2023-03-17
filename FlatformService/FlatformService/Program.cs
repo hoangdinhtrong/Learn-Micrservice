@@ -1,4 +1,5 @@
 using FlatformService.Data;
+using FlatformService.SyncDataServices.Http;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseInMemoryDatabase("InMem"));
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
+
+builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 
 builder.Services.AddControllers();
 
@@ -23,6 +26,8 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1",
     });
 });
+
+Console.WriteLine($"--> CommandService Endpoint {builder.Configuration["CommandService"]}");
 
 
 var app = builder.Build();

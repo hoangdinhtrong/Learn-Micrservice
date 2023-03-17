@@ -46,6 +46,14 @@ docker rmi -f image_id
 
 + kubectl delete deployments platforms-depl
 
++ kubectl rollout restart deployment platforms-depl
+
++ kubectl get namespace
+
+------ ingress-nginx
++ kubectl get pods --namespace=ingress-nginx
++ kubectl get services --namespace=ingress-nginx
+
 ---
 - NodePort
 + kubectl get services

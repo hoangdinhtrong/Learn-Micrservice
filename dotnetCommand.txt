@@ -1,0 +1,11 @@
+dotnet new webapi <NameProject>
+
+dotnet add package <name package>
+
+dotnet run
+
+dotnet build
+
+
+-----------------------
+code -r <name project / foler>

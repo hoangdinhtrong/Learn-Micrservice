@@ -9,3 +9,36 @@ dotnet build
 
 -----------------------
 code -r <name project / foler>
+
+---------------------------------------------
+===================================================================================
+=====================CSHARP REPL (Read-Eval-Print-Loop)============================
+- dotnet tool install -g csharprepl
+- csharprepl
+  + Console.WriteLine("Hello World!") => Enter
+  + var x = "Hello there"; => Enter
+  + Console.WriteLine(x) => Enter (simicolon : Keeping)
+  
+  + var x = 100; => Enter
+  + var y = 100; => Enter
+  + x+y => Enter
+  
+  + var items = new List<int>();
+  + for(var i=0;i<10;i++){
+    items.add(i);
+    }
+  + foreach(var item in items){
+	Console.WriteLine(item);
+    }
+  
+  + #r "nuget: Newtonsoft.Json"
+  + using Newtonsoft.Json;
+  + class TestClass{
+   public string Name {get;set;}
+   }
+   
+  + var testobj = new TestClass{Name=".net core"};
+  + Console.WriteLine(JsonConvert.SerializeObject(testobj)) => Enter
+  
+  + #r "<path project>"
+  + 
